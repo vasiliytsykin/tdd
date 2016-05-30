@@ -25,7 +25,7 @@ namespace Kontur.Courses.Testing.Tdd
         }
 
         [Test]
-        public void DoSomething_WhenSomething()
+        public void ThreeStrikesInLine()
         {
 
             var score = _game.Roll(10).Roll(10).Roll(10).Score;
@@ -47,9 +47,9 @@ namespace Kontur.Courses.Testing.Tdd
         public void IncorrectRoll()
         {
 
-            var score = _game.Roll(6).Roll(5).Roll(3).Score;
+            var score = _game.Roll(10).Roll(11).Score;
 
-            Assert.AreEqual(9, score);
+            Assert.AreEqual(10, score);
         }
 
 
@@ -62,6 +62,18 @@ namespace Kontur.Courses.Testing.Tdd
             }
 
             Assert.AreEqual(300, _game.Score);
+        }
+
+
+        [Test]
+        public void ManyLittleRolls()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                _game = _game.Roll(2);
+            }
+
+            Assert.AreEqual(10, _game.Score);
         }
     }
 }
